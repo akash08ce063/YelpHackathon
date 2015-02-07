@@ -18,5 +18,16 @@ Route::get('/', function()
 
 
 Route::get('/test',function(){
-	return "test working!";
+	$t = new Test();
+	 //echo $t->akash();
+	//return  View::make('testview');
+
+	// $oauth = new OAuthToken("akash" , "patel");
+	 $yelp_api = new YelpAPI();
+	 $yelp_api->query_api("bars","San Francisco, CA");
+	// $y = new YelpAPI();
+
 });
+
+
+Route::controller("/testing" , 'TestingController');
