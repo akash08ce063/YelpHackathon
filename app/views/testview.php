@@ -130,10 +130,15 @@ function get_business($business_id) {
  */
 function query_api($term, $location) {     
     $response = json_decode(search($term, $location));
+
+    print_r("----------");
+    print_r($response);
+    print_r("---------");
+
     $business_id = $response->businesses[0]->id;
     
     print sprintf(
-        "%d businesses found, querying business info for the top result \"%s\"\n\n",         
+        "%d sdfdsbusinesses found, querying business info for the top result \"%s\"\n\n",         
         count($response->businesses),
         $business_id
     );
