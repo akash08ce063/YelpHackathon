@@ -3,6 +3,8 @@
 <link href="/css/signin.css" rel="stylesheet">
 
 @section('body')
+
+
 <div class="container" style="width:400px;height:400px;">
 	<form method="post">
 			<h2 class="form-signin-heading">Sign in</h2>

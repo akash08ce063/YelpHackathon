@@ -53,7 +53,7 @@ function request($host, $path) {
  * @param    $location    The search location passed to the API 
  * @return   The JSON response from the request 
  */
-function search($term, $location,$ccl=null) {
+function search($term, $location,$ccl=null,$sort = null , $radius_filter =null) {
     $url_params = array();
     
     $url_params['term'] = $term ?: YelpConstants::$DEFAULT_TERM;
@@ -61,6 +61,14 @@ function search($term, $location,$ccl=null) {
     
     if($ccl != null){
         $url_params['cll'] = $ccl;
+    }
+
+    if($sort !=null){
+         $url_params['sort'] = $sort;
+    }
+
+    if($radius_filter != null){
+         $url_params['radius_filter'] = $radius_filter;
     }
 
     $url_params['limit'] = 20;
@@ -87,9 +95,9 @@ function get_business($business_id) {
  * @param    $term        The search term to query
  * @param    $location    The location of the business to query
  */
-function query_api($term, $location,$ccl = null) {     
+function query_api($term, $location,$ccl = null,$sort = null , $radius_filter =null) {     
     if($ccl != null){
-       return $response = json_decode($this->search($term, $location,$ccl),true);
+       return $response = json_decode($this->search($term, $location,$ccl ,$sort ,$radius_filter),true);
     }else
         return $response = json_decode($this->search($term, $location));
   //  $business_id = $response->businesses[0]->id;

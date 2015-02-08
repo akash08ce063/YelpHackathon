@@ -30,14 +30,14 @@ class EventController extends BaseController {
 	}
 
 	public function postIndex(){
-		echo $event_id = Input::get('event_id');
-		echo $latlng = Input::get('search_location_hidden');
+		 $event_id = Input::get('event_id');
+		 $latlng = Input::get('search_location_hidden');
 		   $food_type =  Input::get("search_food");
 		$param = "";
 		if(!empty($_POST['check_list'])){
 		// Loop to store and display values of individual checked checkbox.
 			foreach($_POST['check_list'] as $selected){
-				echo $selected."</br>";
+				//echo $selected."</br>";
 				if($param != "")
 					$param = $param . "," . $selected;
 				else
@@ -61,7 +61,7 @@ class EventController extends BaseController {
 		$userdata->is_submitted = "true";
 		$userdata->save();
 
-
+		return Redirect::to('/result?event_id='.$event_id);
 
 
 	}

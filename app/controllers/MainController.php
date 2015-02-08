@@ -82,7 +82,7 @@ class MainController extends BaseController {
 			$active_event_current_user->is_submitted = "false";
 			$active_event_current_user->save();
 
-			return Redirect::to('/event?event_id='.$event_id);
+			return Redirect::to('/event?event_id='.$event->id);
 	}
 
 

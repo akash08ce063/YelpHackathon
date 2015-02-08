@@ -65,7 +65,17 @@ Route::get('/test',function(){
 
 
 	 $yelp_api = new YelpAPI();
-	 $yelp_api->query_api("pizza","Montreal","45.495518,-73.581662");
+	 print_r($yelp_api->query_api("Italian","Montreal","45.495518,-73.581662","1","16093"));
+
+	 print_r($yelp_api->query_api("pizza","Montreal","45.495518,-73.581662","1","16093"));
+
+
+
+
+
+
+
+
 	// $y = new YelpAPI();
 
 });
@@ -75,6 +85,17 @@ Route::controller("event",'EventController');
 Route::controller("result",'ResultController');
 Route::controller("login",'LoginController');
 Route::controller("pending",'PendingController');
+Route::get("vvv",function(){
+	 $hell = array();
+	 $nam = "akash";
+	 for ($i=0; $i < 2; $i++) { 
+	 	$hell[$nam."".$i] = "akash";
+	 }
+
+	 print_r($hell);
+
+});
+
 Route::get("view",function(){
 
 	//echo Auth::user()->username;

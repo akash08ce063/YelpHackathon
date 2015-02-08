@@ -2,7 +2,7 @@
 
 class Utility{
 		
-		function finddistance($lat1, $lon1, $lat2, $lon2, $unit) {
+		public  function finddistance($lat1, $lon1, $lat2, $lon2, $unit) {
 
 		  $theta = $lon1 - $lon2;
 		  $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));

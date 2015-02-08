@@ -10,7 +10,7 @@ class LoginController extends BaseController{
 		$email = Input::get('login-email');
 		$password = Input::get('login-password');
 		if(Auth::attempt(array('username' => $email, 'password' => $password))){
-			return Redirect::intended('main.mainpage');
+			return Redirect::to('/main');
 		}else{
 			return View::make('main.loginpage');
 		}

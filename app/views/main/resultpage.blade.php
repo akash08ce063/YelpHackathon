@@ -17,13 +17,12 @@
 			</div>
 			<div class="col-md-8">
 
-				<div class="page-header">
 				  <h1>  Resturants </h1>
-				</div>
+				
 
 				<hr>
 
-				@foreach($all_business as $key=>$value)
+				@foreach($all_business as $value)
 				<div class="media">
 			      <div class="media-left">
 			        <a href="#">
@@ -32,9 +31,9 @@
 			      </div>
 			      <div class="media-body">
 			        <h4 class="media-heading"><?php echo $value['name']; ?></h4>
-			      	<?php echo $value['snippet_text'] ?>
+			      	<?php if(array_key_exists('snippet_text', $value)) echo $value['snippet_text'] ; ?>
 			      </br>
-			      	 Phone - <?php echo $value['display_phone'] ;?> , Address : <?php echo $value['location']['display_address'][0]?>
+			      	 Phone - <?php if(array_key_exists('display_phone', $value)) echo $value['display_phone'] ;?> , Address : <?php echo $value['location']['display_address'][0]?>
 			      	 <br>	
 			      	<img src=<?php echo $value['rating_img_url']?> />
 			      </div>
@@ -50,7 +49,7 @@
 
 			</div>
 			<div class="col-md-8">
-					<div id="googleMap" style="width:500px;height:380px;"></div>
+					<div id="googleMap" style="width:800px;height:500px; margin-left:0px ; margin-top:22px" ></div>
 					
 			</div>
 
@@ -73,15 +72,15 @@ src="http://maps.googleapis.com/maps/api/js">
 <script>
 function initialize() {
   var mapProp = {
-    center:new google.maps.LatLng(51.508742,-0.120850),
-    zoom:5,
+    center:new google.maps.LatLng(45.508669900000000000,-73.553992499999990000),
+    zoom:13,
     mapTypeId:google.maps.MapTypeId.ROADMAP
   };
   var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
   var participants = [
      @foreach($all_participants as $participant)
-       <?php echo "['',".$participant['latlng']."]" ?>
+       <?php echo "['',".$participant['latlng']."]," ?>
      @endforeach
   ];
 
@@ -95,11 +94,12 @@ function initialize() {
   }
 
   var locations = [
-      ['Bondi Beach', -33.890542, 151.274856, 4],
-      ['Coogee Beach', -33.923036, 151.259052, 5],
-      ['Cronulla Beach', -34.028249, 151.157507, 3],
-      ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-      ['Maroubra Beach', -33.950198, 151.259302, 1]
+
+  	 @foreach($all_business as $value)
+  	 	 <?php echo "['',".$value['location']['coordinate']['latitude']." , ". $value['location']['coordinate']['longitude']." ,'' ]," ?>
+
+  	 @endforeach
+
     ];
  for (i = 0; i < locations.length; i++) {  
       marker = new google.maps.Marker({
